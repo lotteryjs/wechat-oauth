@@ -5,7 +5,7 @@ import (
 	"github.com/lotteryjs/wechat-oauth/model"
 )
 
-// 获取授权页面的URL地址
+// GetAuthorizeURL 获取授权页面的URL地址
 func GetAuthorizeURL(authorize *model.Authorize) string {
 	v, _ := query.Values(authorize)
 	return v.Encode()
