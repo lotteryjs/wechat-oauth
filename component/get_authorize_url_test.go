@@ -18,13 +18,13 @@ func TestGetAuthorizeURL(t *testing.T) {
 		{"生成授权Url",
 			args{
 				&model.Authorize{
-					Appid:       "wx23dfasdfw2",
-					RedirectURI: "https://lotteryjs.com/resolve",
+					Appid:       "wx77317c56edf67e5a",
+					RedirectURI: "https://lotteryjs.com/home/resolve",
 					Scope:       "snsapi_userinfo",
 					State:       "",
 				},
 			},
-			"appid=wx23dfasdfw2&redirect_uri=https%3A%2F%2Flotteryjs.com%2Fresolve&scope=snsapi_userinfo&state=",
+			"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx77317c56edf67e5a&redirect_uri=https%3A%2F%2Flotteryjs.com%2Fhome%2Fresolve&scope=snsapi_userinfo&state=&response_type=code#wechat_redirect",
 		},
 	}
 	for _, tt := range tests {
