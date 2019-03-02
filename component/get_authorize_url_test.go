@@ -15,7 +15,17 @@ func TestGetAuthorizeURL(t *testing.T) {
 		args args
 		want string
 	}{
-		// TODO: Add test cases.
+		{"生成授权Url",
+			args{
+				&model.Authorize{
+					Appid:       "wx23dfasdfw2",
+					RedirectURI: "https://lotteryjs.com/resolve",
+					Scope:       "snsapi_userinfo",
+					State:       "",
+				},
+			},
+			"appid=wx23dfasdfw2&redirect_uri=https%3A%2F%2Flotteryjs.com%2Fresolve&scope=snsapi_userinfo&state=",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
