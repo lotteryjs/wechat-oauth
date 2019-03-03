@@ -25,11 +25,11 @@ func TestAuth_GetAuthorizeURL(t *testing.T) {
 				"appsecret",
 			},
 			args{
-				"http://diveintonode.org/",
+				"http://lotteryjs.com/",
 				"",
 				"",
 			},
-			"https://open.weixin.qq.com/connect/oauth2/authorize?appid=appid&redirect_uri=http%3A%2F%2Fdiveintonode.org%2F&scope=snsapi_base&state=&response_type=code#wechat_redirect",
+			"https://open.weixin.qq.com/connect/oauth2/authorize?appid=appid&redirect_uri=http%3A%2F%2Flotteryjs.com%2F&scope=snsapi_base&state=&response_type=code#wechat_redirect",
 		},
 	}
 	for _, tt := range tests {
