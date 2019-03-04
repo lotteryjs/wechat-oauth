@@ -19,7 +19,7 @@ func TestAuth_GetAuthorizeURL(t *testing.T) {
 		want   string
 	}{
 		{
-			"GetAuthorizeURL",
+			`GetAuthorizeURL("http://lotteryjs.com/","","")`,
 			fields{
 				"appid",
 				"appsecret",
@@ -30,6 +30,32 @@ func TestAuth_GetAuthorizeURL(t *testing.T) {
 				"",
 			},
 			"https://open.weixin.qq.com/connect/oauth2/authorize?appid=appid&redirect_uri=http%3A%2F%2Flotteryjs.com%2F&scope=snsapi_base&state=&response_type=code#wechat_redirect",
+		},
+		{
+			`GetAuthorizeURL("http://lotteryjs.com/","hehe","")`,
+			fields{
+				"appid",
+				"appsecret",
+			},
+			args{
+				"http://lotteryjs.com/",
+				"hehe",
+				"",
+			},
+			"https://open.weixin.qq.com/connect/oauth2/authorize?appid=appid&redirect_uri=http%3A%2F%2Flotteryjs.com%2F&scope=snsapi_base&state=hehe&response_type=code#wechat_redirect",
+		},
+		{
+			`GetAuthorizeURL("http://lotteryjs.com/","hehe","snsapi_userinfo")`,
+			fields{
+				"appid",
+				"appsecret",
+			},
+			args{
+				"http://lotteryjs.com/",
+				"hehe",
+				"snsapi_userinfo",
+			},
+			"https://open.weixin.qq.com/connect/oauth2/authorize?appid=appid&redirect_uri=http%3A%2F%2Flotteryjs.com%2F&scope=snsapi_userinfo&state=hehe&response_type=code#wechat_redirect",
 		},
 	}
 	for _, tt := range tests {
