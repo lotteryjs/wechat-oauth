@@ -3,6 +3,7 @@ package oauth
 import (
 	"github.com/google/go-querystring/query"
 	"github.com/lotteryjs/wechat-oauth/model"
+	"net/http"
 	"strings"
 )
 
@@ -32,4 +33,23 @@ func (a *Auth) GetAuthorizeURL(redirect string, state string, scope string) stri
 
 	v, _ := query.Values(model)
 	return "https://open.weixin.qq.com/connect/oauth2/authorize?" + v.Encode() + "&response_type=code#wechat_redirect"
+}
+
+// GetAccessToken 根据授权获取到的code，换取access token和openid
+func (a *Auth) GetAccessToken(code string) {
+	model := &model.AuthorizeCode{
+		Appid:     a.appid,
+		Secret:    a.appsecret,
+		Code:      code,
+		GrantType: "authorization_code",
+	}
+
+	v, _ := query.Values(model)
+	url := "https://api.weixin.qq.com/sns/oauth2/access_token" + v.Encode()
+
+	resp, err := http.DefaultClient.Get(url)
+	if err != nil {
+		return
+	}
+	defer resp.Body.Close()
 }

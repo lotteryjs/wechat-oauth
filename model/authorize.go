@@ -4,7 +4,7 @@ package model
 //
 // 生成网页授权地址的参数模型
 //
-// swagger:model Error
+// swagger:model Authorize
 type Authorize struct {
 	// 公众号的唯一标识
 	//
